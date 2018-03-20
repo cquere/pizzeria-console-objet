@@ -65,4 +65,21 @@ public class Pizza {
 	public void setPrix(double prix) {
 		this.prix = prix;
 	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		
+		if (obj == null)
+			return false;
+
+		Pizza other = (Pizza) obj;
+		if (code == null) {
+			if (other.code != null)
+				return false;
+		} else if (!code.equals(other.code))
+			return false;
+		return true;
+	}
 }
