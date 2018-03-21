@@ -41,7 +41,7 @@ public class PizzeriaAdminConsoleApp {
 			try {
 				MenuServiceFactory.getMenuService(scanResult).executeUC(pizzaMemDao, scan);				
 			} catch (StockageException e) {
-				System.out.println(e);
+				System.out.println(e.getMessage());
 			} catch (Exception e) {
 				System.out.println("Ce numéro de Menu n'existe pas : " + scanResult);
 			}

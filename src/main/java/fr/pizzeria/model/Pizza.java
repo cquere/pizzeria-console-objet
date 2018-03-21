@@ -6,32 +6,36 @@ public class Pizza {
 	private String libelle;
 	private double prix;
 	private static int idCount = 0;
+	private CategoriePizza categorie;
 
-	public Pizza(String code, String libelle, double prix) {
+	public Pizza(String code, String libelle, double prix, CategoriePizza categorie) {
 		this.id = idCount++;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
+		this.categorie = categorie;
 	}
 
-	public Pizza(int id, String code, String libelle, double prix) {
+	public Pizza(int id, String code, String libelle, double prix, CategoriePizza categorie) {
 		this.id = id;
 		this.code = code;
 		this.libelle = libelle;
 		this.prix = prix;
+		this.categorie = categorie;
 		if (idCount <= id) {
 			idCount++;
 		}
 	}
 
 	public String toString() {
-		return code + " -> " + libelle + " (" + prix + " €)";
+		return code + " -> " + libelle + " - " + categorie.toString() + " (" + prix + " €)";
 	}
 
-	public void setPizza(String code, String libelle, double prix) {
+	public void setPizza(String code, String libelle, double prix, CategoriePizza categorie) {
 		setCode(code);
 		setLibelle(libelle);
 		setPrix(prix);
+		setCategorie(categorie);
 	}
 
 	public int getId() {
@@ -64,6 +68,14 @@ public class Pizza {
 
 	public void setPrix(double prix) {
 		this.prix = prix;
+	}
+
+	public CategoriePizza getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(CategoriePizza categorie) {
+		this.categorie = categorie;
 	}
 
 	@Override
