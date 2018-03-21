@@ -3,8 +3,9 @@ package fr.pizzeria.console;
 
 import java.util.Scanner;
 import fr.pizzeria.dao.PizzaMemDao;
-import fr.pizzeria.services.MenuService;
+import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.services.MenuServiceFactory;
+
 
 public class PizzeriaAdminConsoleApp {
 
@@ -32,8 +33,6 @@ public class PizzeriaAdminConsoleApp {
 
 	private static int analyseScan(int scanResult) {
 
-		MenuService service;
-
 		switch (scanResult) {
 		case 99:
 			System.out.println("Aurevoir ☹");
@@ -41,8 +40,10 @@ public class PizzeriaAdminConsoleApp {
 		default:
 			try {
 				MenuServiceFactory.getMenuService(scanResult).executeUC(pizzaMemDao, scan);				
+			} catch (StockageException e) {
+				System.out.println(e);
 			} catch (Exception e) {
-				System.out.println("Mauvaise saisi de Menu!");
+				System.out.println("Ce numéro de Menu n'existe pas : " + scanResult);
 			}
 			break;
 		}
