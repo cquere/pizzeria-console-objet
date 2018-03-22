@@ -13,7 +13,7 @@ public class PizzeriaAdminConsoleApp {
 
 	public static void main(String[] args) {
 		pizzaMemDao = new PizzaMemDao();
-		PizzaTxtDao p = new PizzaTxtDao();
+//		PizzaTxtDao p = new PizzaTxtDao();
 		scan = new Scanner(System.in);
 		showMenu();
 		while (analyseScan(Integer.parseInt(scan.next())) != 99) {

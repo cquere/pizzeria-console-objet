@@ -1,0 +1,8 @@
+PEP;Pépéroni;12.50;Viande
+MAR;Margherita;14.00;Sans_Viande
+REI;La Reine;11.50;Viande
+FRO;La 4 fromages;12.00;Sans_Viande
+CAN;La cannibale;12.50;Viande
+SAV;La savoyarde;13.00;Viande
+ORI;L'orientale;13.50;Viande
+IND;L'indienne;14.00;Viande

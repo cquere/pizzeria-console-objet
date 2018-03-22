@@ -10,6 +10,7 @@ import com.lowagie.text.DocumentException;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfWriter;
 
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.model.Pizza;
@@ -17,7 +18,7 @@ import fr.pizzeria.model.Pizza;
 public class ExportPizzaService extends MenuService {
 
 	@Override
-	public void executeUC(PizzaMemDao pizzaMemDao, Scanner scan) throws StockageException {
+	public void executeUC(IPizzaDao pizzaMemDao, Scanner scan) throws StockageException {
 
 		ResourceBundle file = ResourceBundle.getBundle("conf");
 		String pdfPath = file.getString("path.absolute");

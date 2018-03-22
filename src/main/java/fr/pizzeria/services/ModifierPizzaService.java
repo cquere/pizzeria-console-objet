@@ -2,6 +2,7 @@ package fr.pizzeria.services;
 
 import java.util.Scanner;
 
+import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.exception.UpdatePizzaException;
@@ -11,7 +12,7 @@ import fr.pizzeria.model.Pizza;
 public class ModifierPizzaService extends MenuService {
 
 	@Override
-	public void executeUC(PizzaMemDao pizzaMemDao, Scanner scan) throws StockageException {
+	public void executeUC(IPizzaDao pizzaMemDao, Scanner scan) throws StockageException {
 		System.out.println("Mise à jour d’une pizza :");
 		
 		System.out.println("Veuillez saisir le code :");
