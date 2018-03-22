@@ -18,6 +18,9 @@ public class MenuServiceFactory {
 		case 4:
 			service = new SupprimerPizzaService();
 			break;
+		case 5:
+			service = new ExportPizzaService();
+			break;
 		}
 		return service;
 	}
