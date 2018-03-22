@@ -1,11 +1,21 @@
 package fr.pizzeria.model;
 
+import fr.pizzeria.utils.Rule;
+import fr.pizzeria.utils.StringUtils;
+import fr.pizzeria.utils.ToString;
+
 public class Pizza {
 	private int id;
+	@Rule(length = 3, staticLength = true)
+	@ToString(uppercase = true, separateurApres = " -> ")
 	private String code;
+	@ToString
 	private String libelle;
+	@Rule(minValue = 0, minValueActivated= true)
+	@ToString(separateurAvant = " (", separateurApres = " €)")
 	private double prix;
 	private static int idCount = 0;
+	@ToString(separateurAvant = " - ")
 	private CategoriePizza categorie;
 
 	public Pizza(String code, String libelle, double prix, CategoriePizza categorie) {
@@ -28,7 +38,7 @@ public class Pizza {
 	}
 
 	public String toString() {
-		return code + " -> " + libelle + " - " + categorie.toString() + " (" + prix + " €)";
+		return StringUtils.builtString(this);
 	}
 
 	public void setPizza(String code, String libelle, double prix, CategoriePizza categorie) {

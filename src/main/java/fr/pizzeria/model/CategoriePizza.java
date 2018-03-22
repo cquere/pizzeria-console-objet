@@ -5,7 +5,7 @@ public enum CategoriePizza {
 
 	private String name;
 
-	CategoriePizza(String categoriePizza) {
+	private CategoriePizza(String categoriePizza) {
 		this.name = categoriePizza;
 	}
 
