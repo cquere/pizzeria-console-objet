@@ -2,8 +2,14 @@ package fr.pizzeria.utils;
 
 import java.lang.reflect.Field;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class StringUtils {
 
+	private static final Logger LOGERROR = LoggerFactory.getLogger("ERROR");
+
+	
 	public static String builtString(Object obj) {
 
 		Class<? extends Object> c = obj.getClass();
@@ -17,9 +23,9 @@ public class StringUtils {
 				try {
 					o = field.get(obj);
 				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
+					LOGERROR.error(e.getMessage());
 				} catch (IllegalAccessException e) {
-					e.printStackTrace();
+					LOGERROR.error(e.getMessage());
 				}
 				if (o != null) {
 					String s = o.toString();

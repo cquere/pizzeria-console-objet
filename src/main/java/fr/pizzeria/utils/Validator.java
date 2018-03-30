@@ -2,10 +2,16 @@ package fr.pizzeria.utils;
 
 import java.lang.reflect.Field;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.exception.StockageException;
 
 public class Validator {
 
+	private static final Logger LOGERROR = LoggerFactory.getLogger("ERROR");
+
+	
 	public static void checkRule(Object obj) throws StockageException {
 
 		Class<? extends Object> c = obj.getClass();
@@ -18,9 +24,9 @@ public class Validator {
 				try {
 					o = field.get(obj);
 				} catch (IllegalArgumentException e) {
-					e.printStackTrace();
+					LOGERROR.error(e.getMessage());
 				} catch (IllegalAccessException e) {
-					e.printStackTrace();
+					LOGERROR.error(e.getMessage());
 				}
 				if (o != null) {
 					String s = o.toString();

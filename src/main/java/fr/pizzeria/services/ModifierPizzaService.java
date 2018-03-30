@@ -13,23 +13,23 @@ public class ModifierPizzaService extends MenuService {
 
 	@Override
 	public void executeUC(IPizzaDao pizzaMemDao, Scanner scan) throws StockageException {
-		System.out.println("Mise à jour d’une pizza :");
+		LOG.info("Mise à jour d’une pizza :");
 		
-		System.out.println("Veuillez saisir le code :");
+		LOG.info("Veuillez saisir le code :");
 		String oldCode = scan.next();
 		oldCode = oldCode.toUpperCase();
 		
-		System.out.println("Veuillez saisir le nouveau code :");
+		LOG.info("Veuillez saisir le nouveau code :");
 		String code = scan.next();
 		code = code.toUpperCase();
 		
-		System.out.println("Veuillez saisir le nouveau nom (sans espace) :");
+		LOG.info("Veuillez saisir le nouveau nom (sans espace) :");
 		String libelle = scan.next();
 		
-		System.out.println("Veuillez saisir la catégorie de la pizza : \n1. Viande\n2. Poisson\n3. Sans Viande");
+		LOG.info("Veuillez saisir la catégorie de la pizza : \n1. Viande\n2. Poisson\n3. Sans Viande");
 		int categ = Integer.parseInt(scan.next());
 		
-		System.out.println("Veuillez saisir le nouveau prix :");
+		LOG.info("Veuillez saisir le nouveau prix :");
 		double prix = Double.parseDouble(scan.next());
 		
 		if (pizzaMemDao.pizzaExists(oldCode)) {

@@ -7,12 +7,16 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public class PizzaTxtDao extends PizzaDao implements IPizzaDao {
 
+
+	
 	public PizzaTxtDao() {
 		ResourceBundle rb = ResourceBundle.getBundle("conf");
 		String path = rb.getString("path.absolute");
@@ -24,11 +28,11 @@ public class PizzaTxtDao extends PizzaDao implements IPizzaDao {
 		try {
 			list = FileUtils.readLines(file, "UTF-8");
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGERROR.error(e.getMessage());
 		}
 
 		for (String s : list) {
-			System.out.println(s);
+			LOG.info(s);
 			String[] p = s.split("[;]+");
 			saveNewPizza(new Pizza(p[0], p[1], Double.parseDouble(p[2]), CategoriePizza.valueOf(p[3].toUpperCase())));
 		}
@@ -48,7 +52,8 @@ public class PizzaTxtDao extends PizzaDao implements IPizzaDao {
 		// FileUtils.writeLines(file, list);
 		// } catch (IOException e) {
 		// // TODO Auto-generated catch block
-		// e.printStackTrace();
+		// 			LOGERROR.error(e.getMessage());
+
 		// }
 
 	}

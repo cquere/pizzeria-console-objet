@@ -29,19 +29,16 @@ public class ExportPizzaService extends MenuService {
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(pdfPath));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGERROR.error(e.getMessage());
 		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGERROR.error(e.getMessage());
 		}
 		document.open();
 		for (Pizza p : pizzaMemDao.findAllPizzas()) {
 			try {
 				document.add(new Paragraph(p.toString()));
 			} catch (DocumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				LOGERROR.error(e.getMessage());
 			}
 		}
 		document.close();

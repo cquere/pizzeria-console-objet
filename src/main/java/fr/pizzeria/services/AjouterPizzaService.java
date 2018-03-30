@@ -11,22 +11,22 @@ import fr.pizzeria.model.Pizza;
 import fr.pizzeria.utils.Validator;
 
 public class AjouterPizzaService extends MenuService {
-
+	
 	@Override
 	public void executeUC(IPizzaDao pizzaMemDao, Scanner scan) throws StockageException {
-		System.out.println("Ajout d’une nouvelle pizza :");
+		LOG.info("Ajout d’une nouvelle pizza :");
 
-		System.out.println("Veuillez saisir le code :");
+		LOG.info("Veuillez saisir le code :");
 		String code = scan.next();
 		code = code.toUpperCase();
 
-		System.out.println("Veuillez saisir le nom (sans espace) :");
+		LOG.info("Veuillez saisir le nom (sans espace) :");
 		String libelle = scan.next();
 
-		System.out.println("Veuillez saisir la catégorie de la pizza : \n1. Viande\n2. Poisson\n3. Sans Viande");
+		LOG.info("Veuillez saisir la catégorie de la pizza : \n1. Viande\n2. Poisson\n3. Sans Viande");
 		int categ = Integer.parseInt(scan.next());
 
-		System.out.println("Veuillez saisir le prix :");
+		LOG.info("Veuillez saisir le prix :");
 		double prix = Double.parseDouble(scan.next());
 
 		

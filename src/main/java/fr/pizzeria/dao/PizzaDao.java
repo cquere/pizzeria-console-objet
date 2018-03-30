@@ -3,9 +3,14 @@ package fr.pizzeria.dao;
 import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import fr.pizzeria.model.Pizza;
 
 public abstract class PizzaDao implements IPizzaDao {
+	protected static final Logger LOGERROR = LoggerFactory.getLogger("ERROR");
+	protected static final Logger LOG = LoggerFactory.getLogger("INFO");
 
 	List<Pizza> pizzaList;
 
