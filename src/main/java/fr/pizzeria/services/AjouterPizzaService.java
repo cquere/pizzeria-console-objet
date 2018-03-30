@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaMemDao;
+import fr.pizzeria.exception.ArgumentNullException;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
@@ -13,7 +14,10 @@ import fr.pizzeria.utils.Validator;
 public class AjouterPizzaService extends MenuService {
 	
 	@Override
-	public void executeUC(IPizzaDao pizzaMemDao, Scanner scan) throws StockageException {
+	public void executeUC(IPizzaDao pizzaMemDao, Scanner scan) throws StockageException, ArgumentNullException {
+		if (pizzaMemDao == null || scan == null)
+			throw new ArgumentNullException();
+		
 		LOG.info("Ajout d’une nouvelle pizza :");
 
 		LOG.info("Veuillez saisir le code :");

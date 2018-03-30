@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
 public @interface Rule {
 
 	public boolean minValueActivated() default false;
-	public int minValue() default Integer.MIN_VALUE;
+	public double minValue() default Double.MIN_VALUE;
 	public boolean staticLength() default false;
 	public int length() default Integer.MAX_VALUE;
 }

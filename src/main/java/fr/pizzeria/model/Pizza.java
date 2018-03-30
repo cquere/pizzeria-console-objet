@@ -11,7 +11,7 @@ public class Pizza {
 	private String code;
 	@ToString
 	private String libelle;
-	@Rule(minValue = 0, minValueActivated= true)
+	@Rule(minValue = 0.0, minValueActivated= true)
 	@ToString(separateurAvant = " (", separateurApres = " €)")
 	private double prix;
 	private static int idCount = 0;

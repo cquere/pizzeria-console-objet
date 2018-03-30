@@ -6,6 +6,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.pizzeria.exception.ArgumentNullException;
+import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
 public abstract class PizzaDao implements IPizzaDao {
@@ -18,13 +20,15 @@ public abstract class PizzaDao implements IPizzaDao {
 		return pizzaList;
 	}
 
-
-	public void saveNewPizza(Pizza pizza) {
+	public void saveNewPizza(Pizza pizza) throws ArgumentNullException {
+		if (pizza == null)
+			throw new ArgumentNullException("pizza is NULL");
 		pizzaList.add(pizza);
 	}
 
-
-	public void updatePizza(String codePizza, Pizza pizza) {
+	public void updatePizza(String codePizza, Pizza pizza) throws ArgumentNullException {
+		if (codePizza == null || pizza == null)
+			throw new ArgumentNullException("codePizza is NULL");
 		for (Object object : pizzaList) {
 			Pizza p = (Pizza) object;
 			if (p.getCode().equals(codePizza)) {
@@ -34,7 +38,9 @@ public abstract class PizzaDao implements IPizzaDao {
 
 	}
 
-	public void deletePizza(String codePizza) {
+	public void deletePizza(String codePizza) throws ArgumentNullException {
+		if (codePizza == null)
+			throw new ArgumentNullException("codePizza is NULL");
 		for (Iterator<Pizza> iter = pizzaList.iterator(); iter.hasNext();) {
 			Pizza p = (Pizza) iter.next();
 			if (p.getCode().equals(codePizza)) {
@@ -43,25 +49,23 @@ public abstract class PizzaDao implements IPizzaDao {
 		}
 	}
 
-	public Pizza findPizzaByCode(String codePizza) {
+	public Pizza findPizzaByCode(String codePizza) throws ArgumentNullException {
+		if (codePizza == null)
+			throw new ArgumentNullException("codePizza is NULL");
 		Pizza p = null;
 		for (Object object : pizzaList) {
 			p = (Pizza) object;
 			if (p.getCode().equals(codePizza)) {
-				break;
+				return p;
 			}
 		}
-		return p;
+		return null;
 	}
 
-	public boolean pizzaExists(String codePizza) {
-		for (Object object : pizzaList) {
-			Pizza p = (Pizza) object;
-			if (p.getCode().equals(codePizza)) {
-				return true;
-			}
-		}
-		return false;
+	public boolean pizzaExists(String codePizza) throws ArgumentNullException {
+		if (codePizza == null)
+			throw new ArgumentNullException("codePizza is NULL");
+		return pizzaList.stream().anyMatch(p -> p.getCode().equals(codePizza));
 	}
 
 }

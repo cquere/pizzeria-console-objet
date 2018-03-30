@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.pizzeria.exception.ArgumentNullException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -17,7 +18,7 @@ public class PizzaTxtDao extends PizzaDao implements IPizzaDao {
 
 
 	
-	public PizzaTxtDao() {
+	public PizzaTxtDao() throws NumberFormatException, ArgumentNullException {
 		ResourceBundle rb = ResourceBundle.getBundle("conf");
 		String path = rb.getString("path.absolute");
 		path += "liste_pizza.txt";
@@ -59,19 +60,19 @@ public class PizzaTxtDao extends PizzaDao implements IPizzaDao {
 	}
 
 
-	public void updatePizza(String codePizza, Pizza pizza) {
+	public void updatePizza(String codePizza, Pizza pizza) throws ArgumentNullException {
 		super.updatePizza(codePizza, pizza);
 	}
 
-	public void deletePizza(String codePizza) {
+	public void deletePizza(String codePizza) throws ArgumentNullException {
 		super.deletePizza(codePizza);
 	}
 
-	public Pizza findPizzaByCode(String codePizza) {
+	public Pizza findPizzaByCode(String codePizza) throws ArgumentNullException {
 		return super.findPizzaByCode(codePizza);
 	}
 
-	public boolean pizzaExists(String codePizza) {
+	public boolean pizzaExists(String codePizza) throws ArgumentNullException {
 		return super.pizzaExists(codePizza);
 	}
 

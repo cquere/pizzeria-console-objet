@@ -2,19 +2,20 @@ package fr.pizzeria.dao;
 
 import java.util.List;
 
+import fr.pizzeria.exception.ArgumentNullException;
 import fr.pizzeria.model.Pizza;
 
 public interface IPizzaDao {
 
 	List<Pizza> findAllPizzas();
 
-	void saveNewPizza(Pizza pizza);
+	void saveNewPizza(Pizza pizza) throws ArgumentNullException;
 
-	void updatePizza(String codePizza, Pizza pizza);
+	void updatePizza(String codePizza, Pizza pizza) throws ArgumentNullException;
 
-	void deletePizza(String codePizza);
+	void deletePizza(String codePizza) throws ArgumentNullException;
 
-	Pizza findPizzaByCode(String codePizza);
+	Pizza findPizzaByCode(String codePizza) throws ArgumentNullException;
 
-	boolean pizzaExists(String codePizza);
+	boolean pizzaExists(String codePizza) throws ArgumentNullException;
 }
