@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.exception.ArgumentNullException;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -26,16 +27,17 @@ public abstract class PizzaDao implements IPizzaDao {
 		pizzaList.add(pizza);
 	}
 
-	public void updatePizza(String codePizza, Pizza pizza) throws ArgumentNullException {
+	public void updatePizza(String codePizza, Pizza pizza) throws ArgumentNullException, UpdatePizzaException {
 		if (codePizza == null || pizza == null)
 			throw new ArgumentNullException("codePizza is NULL");
-		for (Object object : pizzaList) {
-			Pizza p = (Pizza) object;
-			if (p.getCode().equals(codePizza)) {
-				p.setPizza(pizza.getCode(), pizza.getLibelle(), pizza.getPrix(), pizza.getCategorie());
-			}
+		Pizza p;
+		if ( (p = this.findPizzaByCode(codePizza)) != null)
+		{
+			p.setPizza(pizza.getCode(), pizza.getLibelle(), pizza.getPrix(), pizza.getCategorie());
+		}else {
+			throw new UpdatePizzaException();
 		}
-
+		
 	}
 
 	public void deletePizza(String codePizza) throws ArgumentNullException {

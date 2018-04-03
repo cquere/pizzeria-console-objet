@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.Test;
 
 import fr.pizzeria.exception.ArgumentNullException;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -101,7 +102,7 @@ public class PizzaMemDaoTest {
 	}
 
 	@Test
-	public void testUpdatePizza() throws ArgumentNullException {
+	public void testUpdatePizza() throws ArgumentNullException, UpdatePizzaException {
 		PizzaMemDao testSubject = new PizzaMemDao();
 		Pizza pizza = new Pizza("RER", "test", 15, CategoriePizza.POISSON);
 		testSubject.updatePizza("PEP", pizza);
@@ -121,18 +122,17 @@ public class PizzaMemDaoTest {
 	}
 
 	@Test (expected = ArgumentNullException.class)
-	public void testUpdatePizza1() throws ArgumentNullException {
+	public void testUpdatePizza1() throws ArgumentNullException, UpdatePizzaException {
 		PizzaMemDao testSubject = new PizzaMemDao();
-
 		testSubject.updatePizza("PEP", null);
 	}
 	@Test (expected = ArgumentNullException.class)
-	public void testUpdatePizza2() throws ArgumentNullException {
+	public void testUpdatePizza2() throws ArgumentNullException, UpdatePizzaException {
 		PizzaMemDao testSubject = new PizzaMemDao();
 		testSubject.updatePizza(null, new Pizza("RER", "test", 15, CategoriePizza.POISSON));
 	}
 	@Test (expected = ArgumentNullException.class)
-	public void testUpdatePizza3() throws ArgumentNullException {
+	public void testUpdatePizza3() throws ArgumentNullException, UpdatePizzaException {
 		PizzaMemDao testSubject = new PizzaMemDao();
 		testSubject.updatePizza(null, null);
 	}

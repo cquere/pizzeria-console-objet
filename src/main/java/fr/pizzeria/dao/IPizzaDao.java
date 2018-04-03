@@ -3,6 +3,7 @@ package fr.pizzeria.dao;
 import java.util.List;
 
 import fr.pizzeria.exception.ArgumentNullException;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.Pizza;
 
 public interface IPizzaDao {
@@ -11,7 +12,7 @@ public interface IPizzaDao {
 
 	void saveNewPizza(Pizza pizza) throws ArgumentNullException;
 
-	void updatePizza(String codePizza, Pizza pizza) throws ArgumentNullException;
+	void updatePizza(String codePizza, Pizza pizza) throws ArgumentNullException, UpdatePizzaException;
 
 	void deletePizza(String codePizza) throws ArgumentNullException;
 

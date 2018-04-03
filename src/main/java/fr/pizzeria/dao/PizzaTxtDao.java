@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.exception.ArgumentNullException;
+import fr.pizzeria.exception.UpdatePizzaException;
 import fr.pizzeria.model.CategoriePizza;
 import fr.pizzeria.model.Pizza;
 
@@ -60,7 +61,7 @@ public class PizzaTxtDao extends PizzaDao implements IPizzaDao {
 	}
 
 
-	public void updatePizza(String codePizza, Pizza pizza) throws ArgumentNullException {
+	public void updatePizza(String codePizza, Pizza pizza) throws ArgumentNullException, UpdatePizzaException {
 		super.updatePizza(codePizza, pizza);
 	}
 
