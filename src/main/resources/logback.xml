@@ -12,8 +12,7 @@
 		<append>true</append>
 		<immediateFlush>true</immediateFlush>
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} -
-				%msg%n
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
 			</pattern>
 		</encoder>
 	</appender>
@@ -25,7 +24,7 @@
 	</logger>
 	
 	<logger name="ERROR" level="INFO" >
-		<appender-ref ref="FILE" />
+		<appender-ref ref="STDOUT" />
 	</logger>
 
 	<!-- règle de logs par défaut. Ici : niveau INFO vers la sortie standard -->

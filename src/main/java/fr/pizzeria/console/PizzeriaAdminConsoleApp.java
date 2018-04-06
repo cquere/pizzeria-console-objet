@@ -1,10 +1,13 @@
 package fr.pizzeria.console;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import fr.pizzeria.dao.IPizzaDao;
+import fr.pizzeria.dao.PizzaDbDao;
 import fr.pizzeria.dao.PizzaMemDao;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.services.MenuServiceFactory;
@@ -15,11 +18,15 @@ public class PizzeriaAdminConsoleApp {
 	private static final Logger LOGERROR = LoggerFactory.getLogger("ERROR");
 
 	private static Scanner scan;
-	private static PizzaMemDao pizzaMemDao;
+	private static IPizzaDao pizzaDao;
 
 	public static void main(String[] args) {
-		pizzaMemDao = new PizzaMemDao();
-		// PizzaTxtDao p = new PizzaTxtDao();
+		try {
+			pizzaDao = new PizzaDbDao();
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		scan = new Scanner(System.in);
 		showMenu();
 		while (analyseScan(Integer.parseInt(scan.next())) != 99) {
@@ -45,11 +52,11 @@ public class PizzeriaAdminConsoleApp {
 			break;
 		default:
 			try {
-				MenuServiceFactory.getMenuService(scanResult).executeUC(pizzaMemDao, scan);
+				MenuServiceFactory.getMenuService(scanResult).executeUC(pizzaDao, scan);
 			} catch (StockageException e) {
 				LOGERROR.error(e.getMessage());
 			} catch (Exception e) {
-				LOGERROR.error("Ce numéro de Menu n'existe pas : " + scanResult);
+				LOGERROR.error(e.getMessage()); //"Ce numéro de Menu n'existe pas : " + scanResult);
 			}
 			break;
 		}
