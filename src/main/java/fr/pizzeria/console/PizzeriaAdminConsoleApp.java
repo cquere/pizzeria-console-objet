@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import fr.pizzeria.dao.IPizzaDao;
 import fr.pizzeria.dao.PizzaDbDao;
+import fr.pizzeria.dao.PizzaJpaDao;
 import fr.pizzeria.dao.PizzaMemDao;
 import fr.pizzeria.exception.StockageException;
 import fr.pizzeria.services.MenuServiceFactory;
@@ -21,12 +22,7 @@ public class PizzeriaAdminConsoleApp {
 	private static IPizzaDao pizzaDao;
 
 	public static void main(String[] args) {
-		try {
-			pizzaDao = new PizzaDbDao();
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		pizzaDao = new PizzaJpaDao();
 		scan = new Scanner(System.in);
 		showMenu();
 		while (analyseScan(Integer.parseInt(scan.next())) != 99) {

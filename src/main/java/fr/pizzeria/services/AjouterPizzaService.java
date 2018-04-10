@@ -36,11 +36,13 @@ public class AjouterPizzaService extends MenuService {
 		
 		if (categ != 1 && categ != 2 && categ != 3) {
 			throw new UpdatePizzaException("Ce choix de catégorie n'est pas disponible");
-		} else {
+		} else if (pizzaMemDao.pizzaExists(code) == false){
 			CategoriePizza categorie = CategoriePizza.getByIndex(categ);
 			Pizza p = new Pizza(code, libelle, prix, categorie);
 			Validator.checkRule(p);
 			pizzaMemDao.saveNewPizza(p);
+		} else {
+			throw new UpdatePizzaException("La pizza est deja presente dans la base de donnée");
 		}
 	}
 }

@@ -36,7 +36,7 @@ public class PizzaDbDao extends PizzaDao {
 	public List<Pizza> findAllPizzas() {
 		ResultSet resultats = null;
 		condb = database.getConnection();
-		List<Pizza> listPizza = new ArrayList<>();
+		List<Pizza> listPizza = new ArrayList<Pizza>();
 		java.sql.PreparedStatement selectPizzaSt = null;
 
 		try {
